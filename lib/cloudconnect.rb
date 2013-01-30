@@ -1,4 +1,5 @@
 require 'active_support'
+require 'active_support/core_ext'
 require 'active_record'
 
 require 'cloudconnect/version'
@@ -6,6 +7,10 @@ require 'cloudconnect/serializers'
 
 module CloudConnect
   extend ActiveSupport::Concern
+
+  included do
+    self.table_name = self.to_s.underscore.singularize
+  end
 
   module ClassMethods
     # Public: Specify the column as being a multipicklist. This allows you to

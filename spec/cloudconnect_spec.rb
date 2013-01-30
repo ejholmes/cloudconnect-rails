@@ -2,11 +2,26 @@ require 'spec_helper'
 
 describe CloudConnect do
   before do
-    Object.const_set(:MockModel, Class.new { include CloudConnect} )
+    class MockModel
+      def self.table_name=(table_name)
+        @_table_name = table_name
+      end
+
+      def self.table_name
+        @_table_name
+      end
+
+      include CloudConnect
+    end
   end
 
   after do
     Object.send(:remove_const, :MockModel)
+  end
+
+  describe '#table_name' do
+    subject { MockModel.table_name }
+    it { should eq 'mock_model' }
   end
 
   describe '#multipicklist' do

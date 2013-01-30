@@ -27,7 +27,7 @@ class Account < ActiveRecord::Base
 end
 ```
 
-### multipicklist(field)
+### multipicklist(column)
 
 Specify the field as a multipicklist field, which will properly serialize ruby
 arrays to the Salesforce storage format ('Ferrari;Toyota;Honda').
